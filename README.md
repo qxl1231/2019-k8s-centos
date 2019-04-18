@@ -351,17 +351,32 @@ journalctl -f -u kubelet  # 只看当前的kubelet进程日志
 
 出于安全考虑，默认配置下Kubernetes不会将Pod调度到Master节点。如果希望将k8s-master也当作Node使用，可以执行如下命令：
 ```shell
-kubectl taint node k8s-master node-role.kubernetes.io/master-
+kubectl describe node localhost
+#输出:Taints:             node-role.kubernetes.io/master:NoSchedule(这个污点表示默认情况下master节点将不会调度运行Pod，即不运行工作负载。)
+#可以部署到master
+kubectl taint node localhost node-role.kubernetes.io/master=:NoSchedule-
 ```
 其中k8s-master是主机节点hostname如果要恢复Master Only状态，执行如下命令：
  
 ```shell
-kubectl taint node k8s-master node-role.kubernetes.io/master=""
+#不会部署到master
+kubectl taint node k8s-master node-role.kubernetes.io/master:NoSchedule
 ```
+##注意：kubeadm初始化的Kubernetes集群，master节点也被打上了一个node-role.kubernetes.io/master=的label，标识这个节点的角色为master。
+##给Node设置Label和设置污点是两个不同的操作。
 
+###实践：Kubernetes master节点不运行工作负载
+Kubernetes集群的Master节点是十分重要的，一个高可用的Kubernetes集群一般会存在3个以上的master节点，为了保证master节点的稳定性，一般不推荐将业务的Pod调度到master节点上。 下面将介绍一下我们使用Kubernetes调度的Taints和和Tolerations特性确保Kubernetes的Master节点不执行工作负载的实践。
 
+我们的Kubernetes集群中总共有3个master节点，节点的名称分别为k8s-01、k8s-02、k8s-03。 为了保证集群的稳定性，同时提高master节点的利用率，我们将其中一个节点设置为node-role.kubernetes.io/master:NoSchedule，另外两个节点设置为node-role.kubernetes.io/master:PreferNoSchedule，这样保证3个节点中的1个无论在任何情况下都将不运行业务Pod，而另外2个载集群资源充足的情况下尽量不运行业务Pod。
 
+```shell
+kubectl taint nodes k8s-01 node-role.kubernetes.io/master=:NoSchedule
 
+kubectl taint nodes k8s-02 node-role.kubernetes.io/master=:PreferNoSchedule
+
+kubectl taint nodes k8s-03 node-role.kubernetes.io/master=:PreferNoSchedule
+```
 
 
 
