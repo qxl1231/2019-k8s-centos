@@ -3,7 +3,11 @@
 网上全是要么过时的,要么残缺的,大多数都是2016年,2017年的文档,照着尝试了N次,各种卸了重装,最后centos系统都搞得乱七八糟,各种配置互相冲突,影响,一直在kubeadm init 报错, 后来实在无果,重新安装了centos系统,从头再来
 
 非常感谢网友@丿陌路灬再见ミ  技术支持和耐心指导
-- 首先,git clone 
+- 首先fork我的github到本地
+```sh
+git clone https://github.com/qxl1231/2019-k8s-centos.git
+cd 2019-k8s-centos
+```
 - 安装完master后,还要安装下dashboard,请看另一个dashboard的md文档
 
 ## centos7 部署 k8s 集群
