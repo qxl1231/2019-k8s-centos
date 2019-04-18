@@ -136,7 +136,7 @@ kubeadm config images pull # 拉取集群所需镜像，这个需要翻墙
 
 # --- 不能翻墙可以尝试以下办法 ---
 kubeadm config images list # 列出所需镜像
-#(不是一定是下面的,根据实际情况来)
+#(不是一定是下面的,根据实际情况来,此处输出的结果比如:k8s.gcr.io/kube-apiserver:v1.14.1,必须和下面打tag的k8s.gcr.io/kube-apiserver:v1.14.1一模一样,否则就会再去谷歌仓库pull)
 # 根据所需镜像名字先拉取国内资源
 docker pull mirrorgooglecontainers/kube-apiserver:v1.14.1
 docker pull mirrorgooglecontainers/kube-controller-manager:v1.14.1
