@@ -287,10 +287,10 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 
 ```shell
 # node1:
-kubeadm join 192.168.20.5:6443 --token w2i0mh.5fxxz8vk5k8db0wq \
+kubeadm join 192.168.200.25:6443 --token w2i0mh.5fxxz8vk5k8db0wq \
     --discovery-token-ca-cert-hash sha256:65e82e987f50908f3640df7e05c7a91f390a02726c9142808faa739d4dc24252 
 # node2:
-kubeadm join 192.168.20.5:6443 --token w2i0mh.5fxxz8vk5k8db0wq \
+kubeadm join 192.168.200.25:6443 --token w2i0mh.5fxxz8vk5k8db0wq \
     --discovery-token-ca-cert-hash sha256:65e82e987f50908f3640df7e05c7a91f390a02726c9142808faa739d4dc24252 
 ```
 
