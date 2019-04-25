@@ -1,9 +1,10 @@
-# 2019-k8s-centos
-2019最新k8s集群搭建教程 (centos k8s 搭建)
+# 2019-k8s-centos/Ubuntu
+2019最新k8s集群搭建教程 (centos/Ubuntu k8s 搭建教程)
 
-- 1.**新手小白,强烈推荐(我使用的Ubuntu 16)安装只需半小时)**[rancher无脑一键安装文档](https://github.com/qxl1231/2019-k8s-centos/blob/master/rancher-k8s-install.md)
-- 2.手动安装版(安装大概1-2小时,看你报错不报错了!~),不适合新手,过程很繁琐,但是很锻炼人,也能深入理解k8s,我自己尝试了网上各种版本,很多要么过时的,要么残缺的,大多数都是2016年,2017年的文档,照着尝试了N次,各种卸了重装,最后centos系统都搞得乱七八糟,各种配置互相冲突,影响,一直在kubeadm init 报错, 后来实在无果,重新安装了centos系统,从头再来
-- 3.非常感谢运维网友@丿陌路灬再见ミ  技术支持和耐心指导,让我学到不少新知识
+- 以下命令为手动安装版(安装大概1-2小时,看你报错不报错了!~),不适合新手,过程很繁琐,但是很锻炼人,也能深入理解k8s,我自己尝试了网上各种版本,很多要么过时的,要么残缺的,大多数都是2016年,2017年的文档,照着尝试了N次,各种卸了重装,最后centos系统都搞得乱七八糟,各种配置互相冲突影响,一直在kubeadm init 报错, 后来实在无果,重新安装了centos系统,从头再来,然后居然成功安装了!
+- 非常感谢运维网友@丿陌路灬再见ミ  的技术支持和耐心指导,让我学到不少新知识
+
+- Ubuntu快速安装版:**新手小白,推荐使用在Ubuntu 16,上安装rancher,然后按教程安装K8s集群,大概只需半小时)**[rancher无脑一键安装文档](https://github.com/qxl1231/2019-k8s-centos/blob/master/rancher-k8s-install.md)
 ## 首先fork我的github到你的centos主机上
 ```sh
 git clone https://github.com/qxl1231/2019-k8s-centos.git
