@@ -51,7 +51,7 @@ vim /lib/systemd/system/docker.service
 # 在[Service]下添加规则
 ExecStartPost=/sbin/iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT 
 # 重启docker，即可访问到dashboard
-systemctl restart
+systemctl restart docker
 ```
 
 ![登录dashboard](/home/freeze/Document/gitbook/static/1555422013719.png)
