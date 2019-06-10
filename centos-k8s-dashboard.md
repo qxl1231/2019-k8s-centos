@@ -42,7 +42,17 @@ docker tag mirrorgooglecontainers/kubernetes-dashboard-amd64:v1.10.1 k8s.gcr.io/
 docker rmi  mirrorgooglecontainers/kubernetes-dashboard-amd64:v1.10.1
 ```
 
-根据上面的信息可以得知dashboard的ip和端口，使用**火狐浏览器**访问https://192.168.200.25:32383（必须使用**https**，所以会提示不安全，火狐浏览器可以添加例外，谷歌浏览器不行。）
+根据上面的信息可以得知dashboard的ip和端口，使用**火狐浏览器**或最新版本**谷歌浏览器**访问https://192.168.200.25:32383（必须使用**https**）
+
+**注意：如果是centos7，需要关闭iptables或者增加规则**
+```
+# 修改启动脚本
+vim /lib/systemd/system/docker.service
+# 在[Service]下添加规则
+ExecStartPost=/sbin/iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT 
+# 重启docker，即可访问到dashboard
+systemctl restart docker
+```
 
 ![登录dashboard](/home/freeze/Document/gitbook/static/1555422013719.png)
 
