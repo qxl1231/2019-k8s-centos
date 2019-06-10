@@ -274,8 +274,14 @@ kubeadm join 192.168.200.25:6443 --token our9a0.zl490imi6t81tn5u \
 #### 普通用户设置权限
 
 ```shell
+  # Master端：
   mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  # Node端：
+  mkdir -p $HOME/.kube
+  # 复制Master端配置文件$HOME/.kube/config到同级目录，否则后面kubectl get nodes会出现如下错误
+  # The connection to the server localhost:8080 was refused - did you specify the right host or port?
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
